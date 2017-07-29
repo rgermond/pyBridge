@@ -21,6 +21,9 @@ class Bridge:
                 card = self.deck.deal()
                 player.recv(card)
 
+    def bid(self,trump_suit):
+        self.trump_suit = trump_suit
+
     def start(self):
         start = 0
 
