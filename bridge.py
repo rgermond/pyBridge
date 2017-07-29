@@ -34,19 +34,17 @@ class Bridge:
                 #if its the first player
                 if self.suit is None:
                     #let them pick a card and play
-                    choice = player.pick()
-                    card = player.play()
+                    card = player.pick(self.suit)
 
                     #update the suit
                     self.suit = card.suit
 
                 else:
-                    while True:
-                        #get the chosen card
-                        choice = player.pick()
+                    card = player.pick(self.suit)
 
-                        #if it follows suit
-                        if choice.suit == self.suit:
-                            break
+            #reset the suit that is in play
+            self.suit = None
+
+            #reset the pot of cards
 
 
