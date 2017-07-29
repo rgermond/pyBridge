@@ -1,11 +1,19 @@
 from deck import Deck
 from player import Player
 
+def circleList(ls, start):
+    return ls[start:] + ls[:start]
+
 class Bridge:
 
     def __init__(self):
+
+        #initialize the deck and the players
         self.deck = Deck()
         self.players = [Player() for n in range(4)]
+
+        #attribute to hold which suit is being played
+        self.suit = None
 
         #deal out the cards
         for rnd in range(13):
@@ -13,15 +21,32 @@ class Bridge:
                 card = self.deck.deal()
                 player.recv(card)
 
-    def verify(self, player, choice):
-        #verifies that the choice of card is a valid move
-        #should return true or false
-        pass
-
     def start(self):
-        #goes through each round,
-        #starts with whoever won the last hand
-        #prompt each player for a choice, they'll make it
-        #continue until game is done
-        #keep score
-        pass
+        start = 0
+
+        #go for 13 rounds of the game
+        for rnd in range(13):
+
+            #go from the player who won the last round (start will be updated)
+            for player in circleList(self.players, start):
+                #let the player choose a card to play, if its a valid move play it
+
+                #if its the first player
+                if self.suit is None:
+                    #let them pick a card and play
+                    choice = player.pick()
+                    card = player.play()
+
+                    #update the suit
+                    self.suit = card.suit
+
+                else:
+                    while True:
+                        #get the chosen card
+                        choice = player.pick()
+
+                        #if it follows suit
+                        if choice.suit == self.suit:
+                            break
+
+

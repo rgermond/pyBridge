@@ -1,3 +1,3 @@
 # pyBridge
 
-A simple bridge game, not yet in a working state
+A simple bridge game written in python, not yet in a working state

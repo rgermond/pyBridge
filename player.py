@@ -7,7 +7,7 @@ class Player:
     def recv(self, card):
         self.hand.append(card)
 
-    def choose(self):
+    def pick(self):
         return input('select card: ')
 
     def play(self, choice):
