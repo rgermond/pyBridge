@@ -8,12 +8,15 @@ class Bridge:
 
     def __init__(self):
 
-        #initialize the deck and the players
-        self.deck = Deck()
+
+        #intialize the players
         self.players = [Player() for n in range(4)]
 
-        #attribute to hold which suit is being played
-        self.suit = None
+        #initialize the deck
+        self.deck = Deck()
+
+        #shuffle the deck
+        self.deck.shuffle()
 
         #deal out the cards
         for rnd in range(13):
@@ -24,7 +27,7 @@ class Bridge:
     def bid(self,trump_suit):
         self.trump_suit = trump_suit
 
-    def start(self):
+    def play(self):
         start = 0
 
         #go for 13 rounds of the game
