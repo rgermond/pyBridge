@@ -1,4 +1,4 @@
-import random
+from random import shuffle as std_shuffle
 from card import Card
 
 class Deck:
@@ -14,7 +14,7 @@ class Deck:
                         self.cards.append(Card(val,suit))
 
     def shuffle(self):
-        random.shuffle(self.cards)
+        std_shuffle(self.cards)
 
     def deal(self):
         return self.cards.pop()
