@@ -30,24 +30,27 @@ class Bridge:
         #go for 13 rounds of the game
         for rnd in range(13):
 
-            #go from the player who won the last round (start will be updated)
-            for player in circleList(self.players, start):
-                #let the player choose a card to play, if its a valid move play it
-
-                #if its the first player
-                if self.suit is None:
-                    #let them pick a card and play
-                    card = player.pick(self.suit)
-
-                    #update the suit
-                    self.suit = card.suit
-
-                else:
-                    card = player.pick(self.suit)
-
             #reset the suit that is in play
-            self.suit = None
+            suit = None
 
             #reset the pot of cards
+            trick = []
+
+            #go from the player who won the last round (start will be updated)
+            for player in circleList(self.players, start):
+
+                #player picks a card
+                card = player.pick(suit)
+
+                #it is added to the trick
+                trick.append(card)
+
+                #if its the first player
+                if suit is None:
+                    suit = card.suit     #update the suit
+
+
+
+
 
 
