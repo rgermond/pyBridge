@@ -16,7 +16,7 @@ class Player:
         self.org[key]
 
     def pick(self, first_suit):
-        choice = ''
+
         while True:
             print('Selection must be of form: <value><suit>')
             print('Valid values: 2-10, j (jack), q (queen), k (king), a (ace)')
@@ -52,6 +52,9 @@ class Player:
             #but they dont have cards in that suit (a void)
             elif first_suit != suit and not self.org[first_suit]:
                 #let them play because they have a void
+                break
+            elif first_suit == suit:
+                #let them play because they are following suit
                 break
             else:
                 print('Must play a card from the suit: ', first_suit)

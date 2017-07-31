@@ -52,6 +52,11 @@ class Bridge:
                 if suit is None:
                     suit = card.suit     #update the suit
 
+                #determine who won the trick
+                pass
+
+                #update the start
+                pass
 
 
 
