@@ -6,6 +6,7 @@ class Player:
 
     def __init__(self):
         self.hand=[]
+        self.tricks = 0
 
         #organizer dictionary for quick look up if the card is there
         self.org = {'diamonds':[],'hearts':[],'spades':[],'clubs':[]}

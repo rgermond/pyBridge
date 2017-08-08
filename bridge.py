@@ -24,8 +24,25 @@ class Bridge:
                 card = self.deck.deal()
                 player.recv(card)
 
-    def bid(self,trump_suit):
-        self.trump_suit = trump_suit
+    def bid(self,trump):
+        self.trump = trump
+
+    def check_trick(self, trick):
+        win = trick[0]
+        lead_suit = trick[0].suit
+
+        for card in trick[1:]:
+            if card.suit == self.trump:
+                if win.suit != self.trump:
+                    win = card
+                else:
+                    if card.val > win.val:
+                        win = card
+            elif card.suit == lead_suit and win.suit == lead_suit:
+                if card.val > win.val:
+                    win = card
+
+        return trick.index(win)
 
     def play(self):
         start = 0
@@ -52,11 +69,16 @@ class Bridge:
                 if suit is None:
                     suit = card.suit     #update the suit
 
-                #determine who won the trick
-                pass
+            #determine who won the trick
+            win_idx = self.check_trick(start, trick)
 
-                #update the start
-                pass
+            #update the start
+            start = start+win_idx
+            if start > 3:
+                start = start - 4
+
+            #increment the number of tricks the player has won
+            self.players[start].tricks += 1
 
 
 
