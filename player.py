@@ -1,7 +1,7 @@
 class Player:
 
     #class dictionaries to map the user input to the card associated
-    suit_map = {'d':'diamonds', 'c':'clubs','h':'hearts','s':'spades'}
+    suit_map = {'d':'diamond', 'c':'club','h':'heart','s':'spade'}
     value_map = {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'j':11,'q':12,'k':13,'a':14}
 
     def __init__(self):
@@ -9,12 +9,22 @@ class Player:
         self.tricks = 0
 
         #organizer dictionary for quick look up if the card is there
-        self.org = {'diamonds':[],'hearts':[],'spades':[],'clubs':[]}
+        self.org = {'diamond':[],'heart':[],'spade':[],'club':[]}
 
+    def view(self):
+        print('Cards in your hand:')
+        for suit in ['spade', 'heart', 'club', 'diamond']:
+            cards = ''
+            for value in self.org[suit]:
+                cards += str(value)
+                cards += ' '
+
+            print(suit.capitalize() + 's: ' + cards)
 
     def recv(self, card):
         self.hand.append(card)
-        self.org[key]
+        self.org[card.suit].append(card.val)
+        self.org[card.suit].sort()
 
     def pick(self, first_suit):
 
@@ -22,6 +32,9 @@ class Player:
             print('Selection must be of form: <value><suit>')
             print('Valid values: 2-10, j (jack), q (queen), k (king), a (ace)')
             print('Valid suits: s (spades), h (hearts), c (clubs), d (diamonds)')
+            print('\n')
+            self.view()
+
             choice = input('Select card: ')
 
             #if the suit is not in the dictionary repeat the selection
@@ -62,7 +75,9 @@ class Player:
                 continue
 
         #select the card object from the hand
-        card = list(filter(lambda c: c.suit==suit and c.val==value), self.hand)[0]
+        print(suit)
+        print(value)
+        card = list(filter(lambda c: c.suit==suit and c.val==value, self.hand))[0]
         #remove the card from the hand
         self.hand.remove(card)
         #remove the card from the organizer

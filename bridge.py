@@ -80,7 +80,12 @@ class Bridge:
             #increment the number of tricks the player has won
             self.players[start].tricks += 1
 
+def main():
+    bridge = Bridge()
+    bridge.play()
 
+if __name__=='__main__':
+    main()
 
 
 
